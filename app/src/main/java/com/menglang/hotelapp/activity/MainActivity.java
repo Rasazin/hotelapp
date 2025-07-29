@@ -14,7 +14,7 @@ import com.menglang.hotelapp.data.remote.models.response.LoginResponse;
 import com.menglang.hotelapp.data.remote.repository.AuthRepository;
 import com.menglang.hotelapp.data.remote.repository.LoginCallback;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AuthenticatorActivity {
 
     private AuthRepository authRepository;
 
@@ -28,25 +28,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        authRepository = new AuthRepository();
-        authRepository.login("dinsarenkh33", "123456", new LoginCallback() {
-            @Override
-            public void onLoading() {
-                showMessage("Loading...");
-            }
-
-            @Override
-            public void onSuccess(LoginResponse response) {
-                showMessage("Login Success");
-            }
-
-            @Override
-            public void onError(String message) {
-                showMessage(message);
-            }
-        });
-    }
-    private void showMessage(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
